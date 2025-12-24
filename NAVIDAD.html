@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🎄 Navidad MAXIMIZADA: Regalos, Nieve y Magia 🎄</title>
+    
+    <style>
+        /* Variables CSS para colores */
+        :root {
+            --color-rojo: #e83e3e;
+            --color-verde: #219d50;
+            --color-oro: #ffd700;
+            --color-fondo: #0a192f; /* Azul noche */
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--color-fondo);
+            color: #f0f0f0;
+            text-align: center;
+            overflow-x: hidden;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 100 100"><rect width="100" height="100" fill="%230a192f"/><circle cx="10" cy="15" r="0.2" fill="%23fff"/><circle cx="50" cy="5" r="0.3" fill="%23fff"/><circle cx="90" cy="20" r="0.1" fill="%23fff"/><circle cx="30" cy="40" r="0.25" fill="%23fff"/><circle cx="70" cy="65" r="0.15" fill="%23fff"/><circle cx="15" cy="80" r="0.2" fill="%23fff"/><circle cx="85" cy="95" r="0.3" fill="%23fff"/></svg>');
+            background-attachment: fixed;
+            background-size: cover;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* Alineación cambiada para hacer espacio al banner */
+            align-items: center;
+        }
+        
+        /* BANNER DESLIZANTE (NUEVO) */
+        .marquee-banner {
+            width: 100%;
+            background: linear-gradient(90deg, var(--color-rojo), var(--color-verde), var(--color-rojo));
+            padding: 10px 0;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            font-weight: bold;
+            font-size: 1.1rem;
+            white-space: nowrap;
+        }
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 15s linear infinite;
+            padding-left: 100%; /* Empieza fuera de pantalla */
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Nieve que cae (NUEVO) */
+        .snowflake-plus {
+            position: absolute;
+            color: #fff;
+            user-select: none;
+            pointer-events: none;
+            z-index: 99;
+            animation: snowfall linear infinite;
+        }
+
+        @keyframes snowfall {
+            0% { transform: translateY(-100px); opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0.5; }
+        }
+        
+        /* Estilos para los REGALOS FLOTANTES */
+        .floating-gift {
+            position: absolute;
+            font-size: 2.5rem;
+            user-select: none;
+            pointer-events: none;
+            z-index: 5;
+            opacity: 0.8;
+            animation: float-and-rotate linear infinite;
+        }
+
+        @keyframes float-and-rotate {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+            50% { transform: translateY(15px) rotate(5deg); opacity: 1; }
+            100% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+        }
+        
+        /* Contenedor principal del contador */
+        .regalo-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.4),
+                        inset 0 0 10px rgba(255, 255, 255, 0.5);
+            max-width: 90%;
+            margin-top: 50px; /* Separación del banner */
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 10;
+            cursor: pointer;
+        }
+        
+        /* Campana, Contador, Frases mantienen sus estilos anteriores... */
+        .campana-navidena {
+            font-size: 3rem;
+            color: var(--color-oro);
+            margin-bottom: 20px;
+            text-shadow: 2px 2px var(--color-rojo);
+            display: inline-block;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+        }
+        
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 5px;
+            color: var(--color-oro);
+            text-shadow: 2px 2px var(--color-rojo);
+            animation: rubberBand 2s ease infinite alternate;
+        }
+        /* ... Estilos de Contador, Tiempo, Frase ... */
+
+        /* Estilo para la nueva sección de Deseos (NUEVO) */
+        .deseos-section {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 30px 20px;
+            border-radius: 20px 20px 0 0;
+            width: 100%;
+            max-width: 1000px;
+            margin-top: auto; /* Empuja la sección hacia abajo */
+            box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.3);
+            text-align: left;
+        }
+        .deseos-section h2 {
+            color: var(--color-oro);
+            margin-bottom: 15px;
+        }
+        .deseos-section button {
+            background-color: var(--color-verde);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .deseos-section button:hover {
+            background-color: var(--color-rojo);
+        }
+        .deseos-output {
+            margin-top: 15px;
+            font-style: italic;
+            min-height: 20px;
+        }
+        
+        footer {
+            padding: 10px;
+            font-size: 0.8rem;
+            background: rgba(0,0,0,0.7);
+            width: 100%;
+        }
+.btn-ir {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 15px 30px;
+  background: #e53935;
+  color: white;
+  font-size: 1.1rem;
+  text-decoration: none;
+  border-radius: 30px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+    </style>
+</head>
+<body>
+    
+    <div class="marquee-banner">
+        <div class="marquee-content">
+            Feliz Navidad! 🌟 ¡Que la Magia Llene tu Corazón! 🎁 ✨ ¡Temporada de Alegría y Paz! 🔔 🎅 Felices Fiestas! 🌟
+        </div>
+    </div>
+    
+    <div id="star-field" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></div>
+    <div id="gift-field" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></div>
+    <div id="snow-field" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 99;"></div>
+
+    <div class="regalo-container">
+        
+        <div class="guirnalda">
+            <div class="luz roja"></div>
+            <div class="luz verde"></div>
+            <div class="luz roja"></div>
+            <div class="luz verde"></div>
+            <div class="luz roja"></div>
+        </div>
+<a href="XD.html" class="btn-ir">🎁 Ir a la sorpresa</a>
+        <header>
+            
+            <div class="campana-navidena" id="campana-icon">🔔</div>
+            <h1>✨ ¡Feliz Navidad Mágica  Mija 🎄! ✨</h1>
+            <p class="subtitulo">El momento más esperado está por llegar :v</p>
+        </header>
+
+        <section class="contador">
+            <div class="tiempo">
+                <span id="dias">0</span>
+                <small>DÍAS</small>
+            </div>
+            <div class="tiempo">
+                <span id="horas">0</span>
+                <small>HORAS</small>
+            </div>
+            <div class="tiempo">
+                <span id="minutos">0</span>
+                <small>MINUTOS</small>
+            </div>
+            <div class="tiempo">
+                <span id="segundos">0</span>
+                <small>SEGS</small>
+            </div>
+        </section>
+
+        <div class="frase-navidena">
+            <p>"Que la paz y la alegría de la Navidad te acompañen hoy y siempre."</p>
+        </div>
+
+    </div>
+
+    <section class="deseos-section">
+        <h2>💌 Deja un Deseo Navideño</h2>
+        <p>¿Qué esperas de esta Navidad?</p>
+        <button id="generar-deseo-btn">Ver Deseo Aleatorio</button>
+        <div class="deseos-output" id="deseo-output"></div>
+    </section>
+
+    <footer>
+        Hecho con mucha ilusión en el 2025 para la época más bonita del año 🌟
+    </footer>
+
+    
+    <audio id="campana-sound" src="campana.mp3" preload="auto"></audio>
+
+    <script>
+        // --- SCRIPT 1: Lógica del Contador (Sin cambios) ---
+        function actualizarContador() {
+            const ahora = new Date();
+            const anioActual = ahora.getFullYear();
+            const navidad = new Date(anioActual, 11, 25, 0, 0, 0); 
+
+            if (ahora > navidad) {
+                navidad.setFullYear(anioActual + 1);
+            }
+
+            const diferencia = navidad - ahora;
+            const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diferencia / (1000 * 60 * 60)) % 24);
+            const minutos = Math.floor((diferencia / (1000 * 60)) % 60);
+            const segundos = Math.floor((diferencia / 1000) % 60);
+            
+            const formatoDosDigitos = (numero) => numero < 10 ? `0${numero}` : numero;
+
+            document.getElementById("dias").textContent = formatoDosDigitos(dias);
+            document.getElementById("horas").textContent = formatoDosDigitos(horas);
+            document.getElementById("minutos").textContent = formatoDosDigitos(minutos);
+            document.getElementById("segundos").textContent = formatoDosDigitos(segundos);
+        }
+
+        setInterval(actualizarContador, 1000);
+        actualizarContador();
+
+        // --- SCRIPT 2 & 3 (Campana y Estrellas sin cambios funcionales) ---
+        const campanaSound = document.getElementById('campana-sound');
+        const campanaIcon = document.getElementById('campana-icon');
+        const regaloContainer = document.querySelector('.regalo-container');
+        let hasSounded = false;
+        // ... (Funciones tocarCampana y crearEstrellaFugaz aquí, omitidas por brevedad) ...
+        // [CÓDIGO DE TOCAR CAMPANA Y ESTRELLAS FUGACES AQUÍ]
+        
+        // Función para tocar la campana
+        function tocarCampana() {
+            if (campanaSound) {
+                campanaSound.currentTime = 0;
+                campanaSound.play().catch(e => console.log("Error al reproducir el sonido de la campana:", e));
+                campanaIcon.classList.add('ringing');
+                setTimeout(() => {
+                    campanaIcon.classList.remove('ringing');
+                }, 300);
+            }
+        }
+        
+        regaloContainer.addEventListener('click', () => {
+            if (!hasSounded) {
+                tocarCampana();
+                hasSounded = true;
+            }
+        });
+
+        campanaIcon.addEventListener('click', (event) => {
+            event.stopPropagation();
+            tocarCampana();
+        });
+        
+        const starField = document.getElementById('star-field');
+        function crearEstrellaFugaz() {
+            const estrella = document.createElement('div');
+            estrella.className = 'shooting-star';
+            estrella.style.top = Math.random() * 50 + 'vh'; 
+            estrella.style.left = Math.random() * 50 + 'vw';
+            estrella.style.animationDuration = (Math.random() * 2 + 1) + 's';
+            estrella.style.animationDelay = (Math.random() * 5) + 's';
+            starField.appendChild(estrella);
+            estrella.addEventListener('animationend', () => {
+                estrella.remove();
+            });
+        }
+        setInterval(crearEstrellaFugaz, Math.random() * 3000 + 2000); 
+
+        // --- SCRIPT 4: Regalos Flotantes (¡VELOCIDAD AUMENTADA!) ---
+        const giftField = document.getElementById('gift-field');
+        const regalos = ['❄️', '❄️', '❄️'];
+
+        function crearRegaloFlotante() {
+            const gift = document.createElement('div');
+            gift.className = 'floating-gift';
+            gift.textContent = regalos[Math.floor(Math.random() * regalos.length)];
+            gift.style.left = Math.random() * 100 + 'vw';
+            gift.style.top = -100 + 'px'; 
+            gift.style.animationDuration = (Math.random() * 15 + 10) + 's';
+            gift.style.animationDelay = (Math.random() * 5) + 's';
+            
+            giftField.appendChild(gift);
+
+            let currentTop = -100;
+            const floatInterval = setInterval(() => {
+                // VELOCIDAD DE CAÍDA RÁPIDA (3 a 5 píxeles por frame)
+                currentTop += (Math.random() * 2) + 3; 
+                gift.style.top = currentTop + 'px';
+
+                if (currentTop > window.innerHeight) {
+                    clearInterval(floatInterval);
+                    gift.remove();
+                }
+            }, 50);
+        }
+
+        setInterval(crearRegaloFlotante, Math.random() * 2000 + 1000); // Más regalos, más rápidos.
+        
+        
+        // --- SCRIPT 5: Nieve que cae (NUEVA IMPLEMENTACIÓN) ---
+        const snowField = document.getElementById('snow-field');
+        const nieveIconos = ['❅', '❆', '❄'];
+
+        function generarNieve() {
+            const copo = document.createElement('div');
+            copo.className = 'snowflake-plus';
+            copo.textContent = nieveIconos[Math.floor(Math.random() * nieveIconos.length)];
+
+            copo.style.left = Math.random() * 100 + 'vw';
+            copo.style.fontSize = (Math.random() * 15 + 10) + 'px'; // Tamaño aleatorio
+            copo.style.opacity = Math.random() * 0.7 + 0.3; // Opacidad variable
+            copo.style.animationDuration = (Math.random() * 10 + 5) + 's'; // Velocidad variable
+            copo.style.animationDelay = (Math.random() * 5) + 's';
+
+            snowField.appendChild(copo);
+
+            // Eliminar copos cuando terminen de caer (la animación lo hace, pero lo forzamos por si acaso)
+            setTimeout(() => {
+                copo.remove();
+            }, 15000);
+        }
+
+        // Generar nieve constantemente
+        setInterval(generarNieve, 100); 
+
+
+        // --- SCRIPT 6: Deseos Navideños Interactivos (NUEVO) ---
+        const deseos = [
+            "Espero que esta Navidad traiga paz y mucha salud para mi familia.",
+            "Deseo un año lleno de éxitos y nuevas oportunidades.",
+            "¡Que todos los niños del mundo reciban un regalo y una sonrisa!",
+            "Unas vacaciones en un lugar con mucha nieve y chocolate caliente ☕.",
+            "Deseo aprender algo nuevo y emocionante el próximo año.",
+            "Que el espíritu navideño dure todo el año. 💖"
+        ];
+        
+        const deseoBtn = document.getElementById('generar-deseo-btn');
+        const deseoOutput = document.getElementById('deseo-output');
+
+        deseoBtn.addEventListener('click', () => {
+            // Elegir un deseo aleatorio
+            const deseoAleatorio = deseos[Math.floor(Math.random() * deseos.length)];
+            
+            // Mostrar el deseo con un efecto de máquina de escribir
+            deseoOutput.textContent = '';
+            let i = 0;
+            const typingInterval = setInterval(() => {
+                if (i < deseoAleatorio.length) {
+                    deseoOutput.textContent += deseoAleatorio.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(typingInterval);
+                }
+            }, 50); // Velocidad de tipeo
+        });
+        
+    </script>
+</body>
+</html> 
